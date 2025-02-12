@@ -1,0 +1,15 @@
+.box {
+
+    height: 300px;
+    width: 300px; 
+    background-color: blueviolet;
+}
+
+.rounded {
+    border-radius: 30px;
+}
+
+.rotated {
+    rotate: 30deg; 
+    background-color: orange;
+}
