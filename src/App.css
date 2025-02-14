@@ -34,7 +34,8 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 0.2em;
+  margin: 0.2em;
 }
 
 .read-the-docs {
@@ -42,20 +43,34 @@
 }
 
 .imageStyle {
-  max-height: 200px;
-  width: auto;
+  height: 200px;
+  width: 300px;
  
 }
 
 .cards{
-  display: inline-block;
+/*   display: inline-block;
   width: 300px;
-  height: auto;
+  height: 150px;
   background-color: #f7f7f7;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border: 2px solid #e7e7e7; padding: .5rem;*/
+
+border-radius: 4px;
+padding: unset;
+
+
   
 }
 
+.texts {
+width: 300px;
+height: fit-content;
+background-color: #efe9e9;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+
+}
 .container {
   display: inline-flex;
   justify-content: center;
@@ -64,14 +79,29 @@
 }
 
 .cardsContainer {
-display: inline-flex;
+/* display: inline-flex;
+grid-template-columns: 4;
 gap: 10px;
 justify-content: space-between;
-align-items: center;
+align-items: center; */
+
+
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-rows: auto;
+grid-gap: 1rem;
 
 
 }
 
 h3 {
   margin: 5px; 
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  margin: 0.2em;
+  margin-bottom: 10px;
 }
