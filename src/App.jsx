@@ -15,12 +15,23 @@ function handleChange(e) {
   console.log(e.target.value);
 }
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // il primo valore è il valore a cui è arrivata la variabile,
+                                         // il secondo []  imposta il counter
+
+/* 
+  const [user, setUser] = useState({name: "Alice", age: 30}); 
+  console.log(user)
+
+  const updateUserName = () => {
+    const updateUser = {...user, name: "Bob"}
+    setUser(updateUser);
+  }
+ */
 
   const [cities, setCities] = useState([
     {
       id: 0,
-      title: "Torino",
+      name: "Torino",
       description: "La città Sabauda",
       imgURL:
         "https://images.unsplash.com/photo-1610651219730-6b580d616e72?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -28,7 +39,7 @@ function App() {
     },
     {
       id: 1,
-      title: "Milano",
+      name: "Milano",
       description: "La città della moda e dell'impresa",
       imgURL:
         "https://images.unsplash.com/photo-1610016302534-6f67f1c968d8?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -36,7 +47,7 @@ function App() {
     },
     {
       id: 2,
-      title: "Venezia",
+      name: "Venezia",
       description: "La città più bella d'Italia, PUNTO",
       imgURL:
         "https://images.unsplash.com/photo-1545157000-85f257f7b040?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -44,7 +55,7 @@ function App() {
     },
     {
       id: 3,
-      title: "Aosta",
+      name: "Aosta",
       description: "Lorem ipsum, dolor sit amet consectetur.",
       imgURL:
         "https://images.unsplash.com/photo-1584725489356-440a9fdfc978?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -52,7 +63,7 @@ function App() {
     },
     {
       id: 4,
-      title: "Trento",
+      name: "Trento",
       description: "Immersa nella natura",
       imgURL:
         "https://www.visittrentino.info/assets-database/36000-36999/36700-36799/1476418/image-thumb__1476418__ogimages/valle-dell-adige---trento---piazza-duomo_36778.jpg",
@@ -60,7 +71,7 @@ function App() {
     },
     {
       id: 5,
-      title: "Trieste",
+      name: "Trieste",
       description: "Gioiello sul mare",
       imgURL:
         "https://martinaway.com/wp-content/uploads/2019/06/Curiosita-su-Trieste.jpg",
@@ -68,7 +79,7 @@ function App() {
     },
     {
       id: 6,
-      title: "Bologna",
+      name: "Bologna",
       description: "Culla dell'università",
       imgURL:
         "https://hips.hearstapps.com/hmg-prod/images/bologna-01-1531212414.jpg",
@@ -76,7 +87,7 @@ function App() {
     },
     {
       id: 7,
-      title: "Firenze",
+      name: "Firenze",
       description: "Immergiti nell'arte rinascimentale",
       imgURL:
         "https://images.unsplash.com/photo-1476362174823-3a23f4aa6d76?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -87,6 +98,8 @@ function App() {
   const addCity = (city) => {
     setCities([...cities, city]);
   };
+
+  console.log(cities); 
 
   return (
     <>
@@ -104,13 +117,11 @@ function App() {
         <CardForm addCity={addCity}>cardform</CardForm>
       </div>
       <div className="cardsContainer">
-        {cities
-          /* .filter((city) => city.isVisited) */
-          .map((city) => (
+        {cities.map((city) => (
             <Card
               imgURL={city.imgURL}
               key={city.id}
-              title={city.title}
+              name={city.name}
               isVisited={city.isVisited}
               description={city.description}
             ></Card>
@@ -119,19 +130,19 @@ function App() {
       {/*  <div className="cardsContainer"> {/* Gruppo di card che viene effettivamente renderizzato
         <Card
           isVisited={false}
-          title="Firenze"
+          name="Firenze"
           description="Tutta l'arte di cui hai bisogno"
           imgURL="https://images.unsplash.com/photo-1476362174823-3a23f4aa6d76?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ></Card>
         <Card
           isVisited={true}
-          title="Venezia"
+          name="Venezia"
           description="La città sull'acqua"
           imgURL="https://images.unsplash.com/photo-1545157000-85f257f7b040?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ></Card>
         <Card
           isVisited={true}
-          title="Torino"
+          name="Torino"
           description="Immergiti nella città sabauda"
           imgURL="https://images.unsplash.com/photo-1610651219730-6b580d616e72?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ></Card>

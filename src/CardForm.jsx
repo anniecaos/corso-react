@@ -1,28 +1,30 @@
+// eslint-disable-next-line no-unused-vars
 import { use } from "react";
 import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 function CardForm({ addCity }) {
   const [formData, setFormData] = useState({
-    title: "",
+    name: "",
     description: "",
     imgURL: "",
     isVisited: true,
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => { // 'e' rappresenta l'input digitato dall'utente 
     const { name, value, type, checked } = e.target;
-    const inputValue = type == "checkbox" ? checked : value;
+    const inputValue = type == "checkbox" ? checked : value; // se il value type è booleano, quindi una checkbox, prendi check, se no prendi value
     setFormData({
       ...formData,
       [name]: inputValue
-    })
+    });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const city = {
       id: Math.random(),
-      title: formData.title,
+      name: formData.name,
       description: formData.description,
       imgURL: formData.imgURL,
       isVisited: formData.isVisited,
@@ -36,8 +38,8 @@ function CardForm({ addCity }) {
       <input
         className="card"
         type="text"
-        name="title"
-        value={formData.title}
+        name="name"
+        value={formData.name}
         onChange={handleInputChange}
       />
 
@@ -67,7 +69,7 @@ function CardForm({ addCity }) {
         onChange={handleInputChange}
       />
 
-      <button onClick={handleSubmit} className="button">
+      <button type="submit" className="button">
         Aggiungi città!
       </button>
     </form>

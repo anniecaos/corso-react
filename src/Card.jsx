@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-function Card({id, imgURL, title, isVisited, description}) {
+function Card({id, imgURL, name, isVisited, description}) {
 
     /*const imgURL = props.imgURL
-    const title = props.title 
+    const name = props.name 
     const description = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, repudiandae."*/
 
 
@@ -14,7 +14,7 @@ function Card({id, imgURL, title, isVisited, description}) {
       <img className="imageStyle" src= {imgURL} alt=""/>
         <div className="texts">
         <p>{id}</p>
-        <h3>{title}</h3>
+        <h3>{name}</h3>
         <p>{description}</p>
         
          {isVisited ? <span>visitata</span>: <span>non visitata</span> } 
@@ -28,7 +28,7 @@ Card.propTypes = {
 
   id: PropTypes.number.isRequired,
   imgURL: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   isVisited: PropTypes.bool.isRequired,
   description: PropTypes.string.isRequired
 
