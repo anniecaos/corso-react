@@ -101,7 +101,17 @@ h3 {
 .inputContainer {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 300px;
   margin: 0.2em;
+  padding: 0.5em;
   margin-bottom: 10px;
+  text-align: center;
+  background-color:rgb(255, 213, 213);
+  border-radius: 3%;
 }
+
+.inputContainer .button {
+  background-color: rgb(247, 158, 158);
+  margin: 0.5em;
+}
+

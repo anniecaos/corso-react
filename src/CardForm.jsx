@@ -1,26 +1,76 @@
+import { use } from "react";
+import { useState } from "react";
+
+// eslint-disable-next-line react/prop-types
 function CardForm({ addCity }) {
-    
-  const handleClick = () => {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    imgURL: "",
+    isVisited: true,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const inputValue = type == "checkbox" ? checked : value;
+    setFormData({
+      ...formData,
+      [name]: inputValue
+    })
+  };
+
+  const handleSubmit = () => {
     const city = {
-      id: 8,
-      title: "Roma",
-      description: "La città eterna",
-      imgURL:
-        "https://plus.unsplash.com/premium_photo-1676391399721-87078f87da25?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      isVisited: true,
+      id: Math.random(),
+      title: formData.title,
+      description: formData.description,
+      imgURL: formData.imgURL,
+      isVisited: formData.isVisited,
     };
     addCity(city);
   };
 
   return (
-    <div className="inputContainer">
-      <input className="card" type="text" />
-      <input className="card" type="text" />
-      <input className="card" type="text" />
-      <button onClick={handleClick} className="card">
-        Aggiungi Card
+    <form onSubmit={handleSubmit} className="inputContainer">
+      <label> Nome città</label>
+      <input
+        className="card"
+        type="text"
+        name="title"
+        value={formData.title}
+        onChange={handleInputChange}
+      />
+
+      <label>Descrizione</label>
+      <textarea
+        className="card"
+        name="description"
+        value={formData.description}
+        onChange={handleInputChange}
+      />
+
+      <label> Immagine </label>
+      <input
+        className="card"
+        type="text"
+        name="imgURL"
+        value={formData.imgURL}
+        onChange={handleInputChange}
+      />
+
+      <label> Visitata? </label>
+      <input
+        className="card"
+        type="checkbox"
+        name="isVisited"
+        checked={formData.isVisited}
+        onChange={handleInputChange}
+      />
+
+      <button onClick={handleSubmit} className="button">
+        Aggiungi città!
       </button>
-    </div>
+    </form>
   );
 }
 
